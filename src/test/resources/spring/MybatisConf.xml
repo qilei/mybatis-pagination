@@ -7,4 +7,9 @@
         <typeAlias type="org.mybatis.pagination.domain.ResourcesSub" alias="resSub"/>
         <typeAlias type="org.mybatis.pagination.domain.ComplexResourcesSub" alias="complexResSub"/>
 	</typeAliases>
+
+    <mappers>
+        <mapper resource="mapper/ResourcesMapper.xml"/>
+        <mapper resource="mapper/ResourcesSubMapper.xml"/>
+    </mappers>
 </configuration> 

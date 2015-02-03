@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+       Copyright 2009-2012 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.pagination.mapper.PostMapper">
+    <resultMap id="joinedAuthor" type="org.mybatis.pagination.domain.blog.Author">
+        <id property="id" column="author_id"/>
+        <result property="username" column="author_username"/>
+        <result property="password" column="author_password"/>
+        <result property="email" column="author_email"/>
+        <result property="bio" column="author_bio"/>
+        <result property="favouriteSection" column="author_favourite_section"/>
+    </resultMap>
+
+    <resultMap id="PostJoinedWithAuthor" type="Post">
+        <id property="id" column="post_id"/>
+        <result property="createdOn" column="post_created_on"/>
+        <result property="section" column="post_section"/>
+        <result property="subject" column="post_subject"/>
+        <result property="body" column="post_body"/>
+        <association property="author" resultMap="joinedAuthor"/>
+    </resultMap>
+
+    <select id="selectPostJoinedWithAuthor"  resultMap="PostJoinedWithAuthor">
+        select
+        P.id as post_id,
+        P.author_id as post_author_id,
+        P.created_on as post_created_on,
+        P.section as post_section,
+        P.subject as post_subject,
+        P.body as post_body,
+        A.id as author_id,
+        A.username as author_username,
+        A.password as author_password,
+        A.email as author_email,
+        A.bio as author_bio,
+        A.favourite_section as author_favourite_section
+        from Post P
+        inner join Author A on P.author_id = A.id
+    </select>
+
+    <select id="selectByPage" parameterType="PostCriteria"  resultMap="PostJoinedWithAuthor">
+        select
+        P.id as post_id,
+        P.author_id as post_author_id,
+        P.created_on as post_created_on,
+        P.section as post_section,
+        P.subject as post_subject,
+        P.body as post_body,
+        A.id as author_id,
+        A.username as author_username,
+        A.password as author_password,
+        A.email as author_email,
+        A.bio as author_bio,
+        A.favourite_section as author_favourite_section
+        from Post P
+        inner join Author A on P.author_id = A.id
+        where p.author_id = #{autherId}
+    </select>
+</mapper>

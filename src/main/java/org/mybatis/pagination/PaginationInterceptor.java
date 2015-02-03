@@ -213,6 +213,9 @@ public class PaginationInterceptor implements Interceptor, Serializable {
 
         //the need for paging intercept.
         boolean interceptor = ms.getId().matches(_sql_regex);
+        if(!interceptor){
+            return;
+        }
         //obtain paging information.
         final PagingCriteria pageRequest = interceptor
                 ? PagingParametersFinder.instance.findCriteria(parameter)

@@ -38,11 +38,12 @@
   <typeAliases>
     <typeAlias alias="Author" type="org.mybatis.pagination.domain.blog.Author"/>
     <typeAlias alias="Post" type="org.mybatis.pagination.domain.blog.Post"/>
+    <typeAlias alias="PostCriteria" type="org.mybatis.pagination.domain.blog.PostCriteria"/>
   </typeAliases>
 
   <plugins>
     <plugin interceptor="org.mybatis.pagination.PaginationInterceptor">
-      <property name="dbms" value="DERBY"/>
+      <property name="dbms" value="HSQL"/>
         <property name="sqlRegex" value=".*ByPage.*"/>
     </plugin>
   </plugins>
@@ -63,7 +64,7 @@
 
   <mappers>
     <mapper resource="mapper/AuthorMapper.xml"/>
-    <!--<mapper resource="mapper/PostMapper.xml"/>-->
+    <mapper resource="mapper/PostMapper.xml"/>
   </mappers>
 
 </configuration>

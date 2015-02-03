@@ -146,7 +146,6 @@ public class MapperTest {
     public void testPaginationMoreWhere() throws Exception {
         List<SearchField> searchFields = Lists.newArrayList();
 //        searchFields.add(new SearchField("name", false, false, "11"));
-
         PagingCriteria baseCriteria = PagingCriteria.createCriteriaWithSearch(0, 15, 1, searchFields);
         ResourcesPageCriteria criteria = new ResourcesPageCriteria(baseCriteria);
         criteria.setName("测试数据18");

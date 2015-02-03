@@ -8,15 +8,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.mybatis.pagination.dialect.db.DB2Dialect;
-import org.mybatis.pagination.dialect.db.H2Dialect;
-import org.mybatis.pagination.dialect.db.HSQLDialect;
-import org.mybatis.pagination.dialect.db.MySQLDialect;
-import org.mybatis.pagination.dialect.db.OracleDialect;
-import org.mybatis.pagination.dialect.db.PostgreSQLDialect;
-import org.mybatis.pagination.dialect.db.SQLServer2005Dialect;
-import org.mybatis.pagination.dialect.db.SQLServerDialect;
-import org.mybatis.pagination.dialect.db.SybaseDialect;
+import org.mybatis.pagination.dialect.db.*;
 
 
 /**
@@ -82,7 +74,9 @@ public class DialectClient implements Serializable {
 				return new H2Dialect();
 			case HSQL:
 				return new HSQLDialect();
-			default:
+            case DERBY:
+                return new DerbyDialect();
+            default:
 				throw new UnsupportedOperationException("Empty dbms dialect");
 		}
 	}

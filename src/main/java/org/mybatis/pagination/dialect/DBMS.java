@@ -23,6 +23,7 @@ public enum DBMS {
     SQLSERVER,
     SQLSERVER2005,
     SYBASE,
+    DERBY,
     /**
      * 自定义
      */

@@ -17,6 +17,7 @@ import org.mybatis.pagination.mapper.PostMapper;
 
 import java.io.Reader;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -33,6 +34,18 @@ public class PostMapperTest extends BaseDataTest {
         final String resource = "spring/MapperConfig.xml";
         final Reader reader = Resources.getResourceAsReader(resource);
         sqlMapper = new SqlSessionFactoryBuilder().build(reader);
+    }
+
+    @Test
+    public void selectAllPosts() {
+        SqlSession session = sqlMapper.openSession();
+        try {
+            PostMapper mapper = session.getMapper(PostMapper.class);
+            List<Map> posts = mapper.selectAllPosts();
+            assertTrue(posts.size()>0);
+        } finally {
+            session.close();
+        }
     }
 
     @Test

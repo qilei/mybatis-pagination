@@ -29,7 +29,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class SqlSessionTest extends BaseDataTest {
+public class AuthorMapperTest extends BaseDataTest {
     private static SqlSessionFactory sqlMapper;
 
     @BeforeClass

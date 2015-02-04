@@ -57,6 +57,7 @@ import java.util.Properties;
 public class PaginationInterceptor implements Interceptor, Serializable {
     /** serial Version */
     private static final long serialVersionUID = -6075937069117597841L;
+    private static final ThreadLocal<Boolean> IS_PAGE = new ThreadLocal<Boolean>();
     private static final ThreadLocal<Integer> PAGINATION_TOTAL = new ThreadLocal<Integer>();
     private static final ThreadLocal<PagingCriteria> PAGE_REQUEST = new ThreadLocal<PagingCriteria>();
     /** logging */
@@ -67,6 +68,13 @@ public class PaginationInterceptor implements Interceptor, Serializable {
     private static String _sql_regex = "[*]";
     /** DataBase dialect. */
     protected Dialect _dialect;
+
+    public static boolean getIsPage(){
+        if (IS_PAGE.get() == null) {
+            return false;
+        }
+        return IS_PAGE.get();
+    }
 
     /**
      * Gets pagination total.
@@ -91,6 +99,7 @@ public class PaginationInterceptor implements Interceptor, Serializable {
 
     /** clear total context. */
     public static void clean() {
+        IS_PAGE.remove();
         PAGE_REQUEST.remove();
         PAGINATION_TOTAL.remove();
     }
@@ -213,6 +222,7 @@ public class PaginationInterceptor implements Interceptor, Serializable {
 
         //the need for paging intercept.
         boolean interceptor = ms.getId().matches(_sql_regex);
+        IS_PAGE.set(interceptor);
         if(!interceptor){
             return;
         }

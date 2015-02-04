@@ -60,14 +60,19 @@ public class PaginationExecutor implements Executor {
                              CacheKey cacheKey, BoundSql boundSql) throws SQLException {
 
         final List<E> rows = executor.query(ms, parameter, rowBounds, resultHandler);
-        int total = PaginationInterceptor.getPaginationTotal();
         try {
-            if (total != 0) {
-                final PageMyBatis<E> result = new PageMyBatis<E>(rows, PaginationInterceptor.getPageRequest(), total);
-                doCache(ms, result, parameter, rowBounds);
-                return result;
-            } else {
-                return new PageMyBatis<E>(rows);
+            boolean isPage = PaginationInterceptor.getIsPage();
+            if(isPage) {
+                int total = PaginationInterceptor.getPaginationTotal();
+                if (total != 0) {
+                    final PageMyBatis<E> result = new PageMyBatis<E>(rows, PaginationInterceptor.getPageRequest(), total);
+                    doCache(ms, result, parameter, rowBounds);
+                    return result;
+                } else {
+                    return new PageMyBatis<E>(rows);
+                }
+            }else{
+                return rows;
             }
         } finally {
             PaginationInterceptor.clean();
@@ -80,14 +85,19 @@ public class PaginationExecutor implements Executor {
             throws SQLException {
 
         final List<E> rows = executor.query(ms, parameter, rowBounds, resultHandler);
-        int total = PaginationInterceptor.getPaginationTotal();
         try {
-            if (total != 0) {
-                final PageMyBatis<E> result = new PageMyBatis<E>(rows, PaginationInterceptor.getPageRequest(), total);
-                doCache(ms, result, parameter, rowBounds);
-                return result;
-            } else {
-                return new PageMyBatis<E>(rows);
+            boolean isPage = PaginationInterceptor.getIsPage();
+            if(isPage){
+                int total = PaginationInterceptor.getPaginationTotal();
+                if (total != 0) {
+                    final PageMyBatis<E> result = new PageMyBatis<E>(rows, PaginationInterceptor.getPageRequest(), total);
+                    doCache(ms, result, parameter, rowBounds);
+                    return result;
+                } else {
+                    return new PageMyBatis<E>(rows);
+                }
+            }else{
+                return rows;
             }
         } finally {
             PaginationInterceptor.clean();

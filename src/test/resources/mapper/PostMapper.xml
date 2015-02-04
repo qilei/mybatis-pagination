@@ -40,6 +40,14 @@
         <association property="author" resultMap="joinedAuthor"/>
     </resultMap>
 
+    <!--<select id="selectAllPosts" resultType="Post">
+        select id,author_id authorId,created_on createdOn,section,subject,body,draft from Post
+    </select>-->
+
+    <select id="selectAllPosts" resultType="hashmap" resultSetType="SCROLL_INSENSITIVE">
+        select * from post order by id
+    </select>
+
     <select id="selectPostJoinedWithAuthor"  resultMap="PostJoinedWithAuthor">
         select
         P.id as post_id,

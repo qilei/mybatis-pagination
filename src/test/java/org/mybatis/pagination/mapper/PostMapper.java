@@ -22,10 +22,13 @@ import org.mybatis.pagination.dto.PageMyBatis;
 import org.mybatis.pagination.dto.datatables.PagingCriteria;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PostMapper {
 
-    //PageMyBatis<Post> selectByPage(PagingCriteria pagingCriteria);
+    //List<Post> selectAllPosts();
+
+    List<Map> selectAllPosts();
 
     List<Post> selectPostJoinedWithAuthor();
 

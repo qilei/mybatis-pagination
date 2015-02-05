@@ -23,7 +23,7 @@
 
 <configuration>
 
-  <properties resource="databases/blog/blog-derby.properties"/>
+  <properties resource="databases/blog/blog.properties"/>
 
   <settings>
     <setting name="cacheEnabled" value="true"/>

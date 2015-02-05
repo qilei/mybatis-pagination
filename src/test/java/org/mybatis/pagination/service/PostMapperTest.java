@@ -6,8 +6,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mybatis.pagination.domain.ResourcesPageCriteria;
-import org.mybatis.pagination.domain.blog.Author;
 import org.mybatis.pagination.domain.blog.Post;
 import org.mybatis.pagination.domain.blog.PostCriteria;
 import org.mybatis.pagination.dto.PageMyBatis;

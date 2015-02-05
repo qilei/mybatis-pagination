@@ -29,13 +29,9 @@ import java.util.Properties;
 
 public abstract class BaseDataTest {
 
-  public static final String BLOG_PROPERTIES = "databases/blog/blog-derby.properties";
-  public static final String BLOG_DDL = "databases/blog/blog-derby-schema.sql";
-  public static final String BLOG_DATA = "databases/blog/blog-derby-dataload.sql";
-
-  public static final String JPETSTORE_PROPERTIES = "databases/jpetstore/jpetstore-hsqldb.properties";
-  public static final String JPETSTORE_DDL = "databases/jpetstore/jpetstore-hsqldb-schema.sql";
-  public static final String JPETSTORE_DATA = "databases/jpetstore/jpetstore-hsqldb-dataload.sql";
+  public static final String BLOG_PROPERTIES = "databases/blog/blog.properties";
+  public static final String BLOG_DDL = "databases/blog/blog-schema.sql";
+  public static final String BLOG_DATA = "databases/blog/blog-dataload.sql";
 
   public static UnpooledDataSource createUnpooledDataSource(String resource) throws IOException {
     Properties props = Resources.getResourceAsProperties(resource);
@@ -87,10 +83,4 @@ public abstract class BaseDataTest {
     return ds;
   }
 
-  public static DataSource createJPetstoreDataSource() throws IOException, SQLException {
-    DataSource ds = createUnpooledDataSource(JPETSTORE_PROPERTIES);
-    runScript(ds, JPETSTORE_DDL);
-    runScript(ds, JPETSTORE_DATA);
-    return ds;
-  }
 }

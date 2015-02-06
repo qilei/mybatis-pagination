@@ -38,6 +38,7 @@
   <typeAliases>
     <typeAlias alias="Author" type="org.mybatis.pagination.domain.blog.Author"/>
     <typeAlias alias="Post" type="org.mybatis.pagination.domain.blog.Post"/>
+    <typeAlias alias="PageCriteria" type="org.mybatis.pagination.dto.datatables.PagingCriteria"/>
     <typeAlias alias="PostCriteria" type="org.mybatis.pagination.domain.blog.PostCriteria"/>
   </typeAliases>
 

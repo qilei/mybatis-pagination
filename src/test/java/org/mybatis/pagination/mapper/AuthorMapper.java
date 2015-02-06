@@ -17,12 +17,22 @@ package org.mybatis.pagination.mapper;
 
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.pagination.domain.blog.Author;
+import org.mybatis.pagination.domain.blog.Post;
+import org.mybatis.pagination.dto.PageMyBatis;
+import org.mybatis.pagination.dto.datatables.PagingCriteria;
 
 import java.util.*;
 
 public interface AuthorMapper {
 
+    void insert(Author author);
+
   List<Author> selectAllAuthors();
+
+    List<Author> selectByRowBound(RowBounds rowBounds);
+
+    PageMyBatis<Author> selectByPage(PagingCriteria criteria);
 
 }

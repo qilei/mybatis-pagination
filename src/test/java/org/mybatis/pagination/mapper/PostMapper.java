@@ -26,8 +26,6 @@ import java.util.Map;
 
 public interface PostMapper {
 
-    //List<Post> selectAllPosts();
-
     List<Map> selectAllPosts();
 
     List<Post> selectPostJoinedWithAuthor();

@@ -20,10 +20,22 @@
 
 <mapper namespace="org.mybatis.pagination.mapper.AuthorMapper">
 
+    <insert id="insert" parameterType="Author">
+        insert into Author(id,username,password,email,bio,favourite_section)
+        values(#{id},#{username},#{password},#{email},#{bio},#{favouriteSection})
+    </insert>
 
     <select id="selectAllAuthors" resultType="Author">
         select * from author
     </select>
 
+    <select id="selectByRowBound" resultType="Author">
+        select * from author
+    </select>
+
+
+    <select id="selectByPage" parameterType="PageCriteria" resultType="Author">
+        select * from author
+    </select>
 
 </mapper>

@@ -83,4 +83,10 @@ public abstract class BaseDataTest {
     return ds;
   }
 
+    public static DataSource createBlogDataSourceWithoutData() throws IOException, SQLException {
+        DataSource ds = createUnpooledDataSource(BLOG_PROPERTIES);
+        runScript(ds, BLOG_DDL);
+        return ds;
+    }
+
 }

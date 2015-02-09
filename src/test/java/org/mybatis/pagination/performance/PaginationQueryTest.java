@@ -25,7 +25,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by qilei on 2015/2/6.
  */
-public class LimitQuery extends BaseDataTest {
+public class PaginationQueryTest extends BaseDataTest {
     private static SqlSessionFactory sqlMapper;
     private static int TOTAL_RECORD = 100000;
     private static int PAGE_SIZE = 10;
